@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  sshd:
+    build: ./sshd
+    restart: always
+    ports:
+      - 2222:22
+    volumes:
+      - /Data_Host/backups:/data
+    environment:
+      - SSH_USERS=backup:50:50:/bin/bash
+      - SSH_ENABLE_ROOT=true
+      - SSH_ENABLE_PASSWORD_AUTH=true
+      - SSH_ENABLE_ROOT_PASSWORD_AUTH=true
+      - SFTP_MODE=true
